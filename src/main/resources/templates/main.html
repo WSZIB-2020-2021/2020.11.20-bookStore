@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Unicorn Book Store</title>
+    <link rel="stylesheet" href="/main.css">
 </head>
 <body>
-Coś z mojej strony !!!
+<div th:replace="fragments.html :: logo"></div>
+<div th:replace="fragments.html :: menu"></div>
+<div id="content">
+
+</div>
 </body>
 </html>

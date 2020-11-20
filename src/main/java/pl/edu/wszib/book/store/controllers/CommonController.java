@@ -1,28 +1,23 @@
 package pl.edu.wszib.book.store.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class CommonController {
 
-    @RequestMapping(value = "/cos", method = RequestMethod.GET)
-    public String httpRequestAction() {
-        System.out.println("Odpalilo sie cos !!");
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String landingPage() {
+        return "redirect:/main";
+    }
+
+    @RequestMapping(value = "/main", method = RequestMethod.GET)
+    public String main() {
         return "main";
     }
 
-    @RequestMapping(value = "/cos2", method = RequestMethod.GET)
-    public String httpRequestAction2() {
-        System.out.println("abc1111111111");
-        return "main";
-    }
-
-    @RequestMapping(value = "/cos3", method = RequestMethod.GET)
-    public String httpRequestAction3() {
-        System.out.println("abc44444444444444444");
-        return "main";
+    @RequestMapping(value = "/contact", method = RequestMethod.GET)
+    public String contact() {
+        return "contact";
     }
 }
