@@ -39,6 +39,6 @@ public class BooksRepositoryImpl implements IBooksRepository {
 
     @Override
     public List<Book> getAllBooks() {
-        return null;
+        return this.books;
     }
 }
