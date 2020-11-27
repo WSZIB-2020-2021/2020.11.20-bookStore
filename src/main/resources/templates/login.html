@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Unicorn Book Store</title>
+    <link rel="stylesheet" href="/commons.css">
+    <link rel="stylesheet" href="/login.css">
+</head>
+<body>
+<div th:replace="fragments.html :: logo"></div>
+<form id="login-form" method="post">
+    <input type="text" placeholder="Login" name="login">
+    <input type="password" placeholder="Hasło" name="pass">
+    <input type="submit" value="Zaloguj">
+</form>
+</body>
+</html>

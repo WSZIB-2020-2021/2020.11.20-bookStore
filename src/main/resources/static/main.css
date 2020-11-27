@@ -1,0 +1,21 @@
+.book-box {
+    width: 80%;
+    margin: 15px auto;
+    border: 2px solid black;
+}
+.title-box {
+    font-size: 30px;
+    padding: 10px;
+}
+.author-box {
+    font-size: 26px;
+    padding: 10px;
+}
+.book-data-box {
+    font-size: 20px;
+    padding: 10px;
+}
+.book-data-box div {
+    display: inline-block;
+    margin-right: 50px;
+}
