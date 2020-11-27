@@ -34,3 +34,9 @@
     color: white;
     background-color: black;
 }
+#register-link {
+    display: block;
+    margin: 10px 0;
+    font-size: 26px;
+    text-align: center;
+}

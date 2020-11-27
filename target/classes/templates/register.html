@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Unicorn Book Store</title>
+    <link rel="stylesheet" href="/commons.css">
+    <link rel="stylesheet" href="/login.css">
+    <script src="registerValidator.js"></script>
+</head>
+<body>
+<div th:replace="fragments.html :: logo"></div>
+<form id="register-form" method="post" onsubmit="return validate()">
+    <input type="text" placeholder="Login" th:field="*{userModel.login}" id="login">
+    <input type="password" placeholder="Hasło" th:field="*{userModel.pass}" id="pass">
+    <input type="password" placeholder="Powtórz hasło" th:field="*{userModel.pass}" id="pass2">
+    <input type="submit" value="Zarejestruj">
+</form>
+</body>
+</html>

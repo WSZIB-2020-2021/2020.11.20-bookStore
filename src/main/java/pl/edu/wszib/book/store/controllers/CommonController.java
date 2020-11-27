@@ -6,7 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.wszib.book.store.database.IBooksRepository;
 import pl.edu.wszib.book.store.model.Book;
+import pl.edu.wszib.book.store.session.SessionObject;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Controller
@@ -14,6 +16,9 @@ public class CommonController {
 
     @Autowired
     IBooksRepository bookRepository;
+
+    @Resource
+    SessionObject sessionObject;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String landingPage() {
@@ -24,11 +29,13 @@ public class CommonController {
     public String main(Model model) {
         List<Book> books = this.bookRepository.getAllBooks();
         model.addAttribute("books", books);
+        model.addAttribute("isLogged", this.sessionObject.isLogged());
         return "main";
     }
 
     @RequestMapping(value = "/contact", method = RequestMethod.GET)
-    public String contact() {
+    public String contact(Model model) {
+        model.addAttribute("isLogged", this.sessionObject.isLogged());
         return "contact";
     }
 }
