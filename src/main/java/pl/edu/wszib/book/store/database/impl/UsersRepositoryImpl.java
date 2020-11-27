@@ -18,14 +18,14 @@ public class UsersRepositoryImpl implements IUsersRepository {
     }
 
     @Override
-    public boolean authenticate(User user) {
+    public User authenticate(User user) {
         for(User userFormDatabase : this.users) {
             if(userFormDatabase.getLogin().equals(user.getLogin())
                     && userFormDatabase.getPass().equals(user.getPass())) {
-                return true;
+                return userFormDatabase;
             }
         }
 
-        return false;
+        return null;
     }
 }

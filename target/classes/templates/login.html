@@ -9,8 +9,8 @@
 <body>
 <div th:replace="fragments.html :: logo"></div>
 <form id="login-form" method="post">
-    <input type="text" placeholder="Login" name="login">
-    <input type="password" placeholder="Hasło" name="pass">
+    <input type="text" placeholder="Login" th:field="*{userModel.login}">
+    <input type="password" placeholder="Hasło" th:field="*{userModel.pass}">
     <input type="submit" value="Zaloguj">
 </form>
 </body>
