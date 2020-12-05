@@ -57,4 +57,8 @@ public class Book {
     public void setPieces(int pieces) {
         this.pieces = pieces;
     }
+
+    public Book clone() {
+        return new Book(this.title, this.author, this.isbn, this.price, this.pieces);
+    }
 }

@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface IBooksRepository {
     List<Book> getAllBooks();
+    Book getBookByISBN(String isbn);
 }
