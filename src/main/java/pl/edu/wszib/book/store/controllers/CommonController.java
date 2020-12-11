@@ -30,7 +30,7 @@ public class CommonController {
         List<Book> books = this.bookRepository.getAllBooks();
         model.addAttribute("books", books);
         model.addAttribute("isLogged", this.sessionObject.isLogged());
-        model.addAttribute("role", this.sessionObject.isLogged() ? this.sessionObject.getLoggedUser().getRole() : null);
+        model.addAttribute("role", this.sessionObject.isLogged() ? this.sessionObject.getLoggedUser().getRole().toString() : null);
         return "main";
     }
 

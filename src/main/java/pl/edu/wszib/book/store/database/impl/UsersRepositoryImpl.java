@@ -14,8 +14,8 @@ public class UsersRepositoryImpl implements IUsersRepository {
     private final List<User> users = new ArrayList<>();
 
     public UsersRepositoryImpl() {
-        this.users.add(new User("mateusz", "mateusz", Role.USER));
-        this.users.add(new User("admin", "admin", Role.ADMIN));
+        this.users.add(new User(0, "mateusz", "mateusz", Role.USER));
+        this.users.add(new User(0, "admin", "admin", Role.ADMIN));
     }
 
     @Override

@@ -19,7 +19,7 @@
             <div th:text="'Cena: ' + ${book.price} + 'zł'"></div>
             <div th:text="'Ilość: ' + ${book.pieces}"></div>
             <a th:href="@{/addToBasket/{isbn}(isbn=${book.isbn})}" class="buy-button" th:if="${isLogged}"></a>
-            <a th:if="${role.name() == 'ADMIN'}" th:href="@{/edit/{isbn}(isbn=${book.isbn})}" class="edit-button"></a>
+            <a th:if="${role == 'ADMIN'}" th:href="@{/edit/{isbn}(isbn=${book.isbn})}" class="edit-button"></a>
         </div>
     </div>
 </th:block>

@@ -7,12 +7,11 @@ import pl.edu.wszib.book.store.model.Book;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
 public class BooksRepositoryImpl implements IBooksRepository {
     private final List<Book> books = new ArrayList<>();
 
     public BooksRepositoryImpl() {
-        this.books.add(new Book("Czysty kod. Podręcznik dobrego programisty",
+        /*this.books.add(new Book("Czysty kod. Podręcznik dobrego programisty",
                 "Robert C. Martin",
                 "978-83-283-0234-1",
                 34.5,
@@ -34,7 +33,7 @@ public class BooksRepositoryImpl implements IBooksRepository {
                 "Piotr Kośka",
                 "978-83-283-7629-8",
                 199.00,
-                5));
+                5));*/
     }
 
     @Override

@@ -69,7 +69,7 @@ public class UserController {
         }
 
 
-        boolean registrationResult = usersRepository.register(new User(registrationModel.getLogin(), registrationModel.getPass(), Role.USER));
+        boolean registrationResult = usersRepository.register(new User(0, registrationModel.getLogin(), registrationModel.getPass(), Role.USER));
 
         if(registrationResult) {
             return "redirect:/login";
