@@ -51,4 +51,14 @@ public class BooksRepositoryImpl implements IBooksRepository {
 
         return null;
     }
+
+    @Override
+    public void updateBook(Book book) {
+
+    }
+
+    @Override
+    public Book getBookById(int id) {
+        return null;
+    }
 }

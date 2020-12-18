@@ -1,8 +1,8 @@
-package pl.edu.wszib.book.store.database.impl;
+package pl.edu.wszib.book.store.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import pl.edu.wszib.book.store.database.IBooksRepository;
+import org.springframework.stereotype.Repository;
+import pl.edu.wszib.book.store.dao.IBookDAO;
 import pl.edu.wszib.book.store.model.Book;
 
 import java.sql.Connection;
@@ -12,41 +12,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
-public class SQLBookRepositoryImpl implements IBooksRepository {
+@Repository
+public class BookDAOImpl implements IBookDAO {
 
     @Autowired
     Connection connection;
 
     @Override
-    public List<Book> getAllBooks() {
-        List<Book> books = new ArrayList<>();
+    public Book getBookById(int id) {
+        String sql = "SELECT * FROM tbook WHERE id = ?";
         try {
-            String sql = "SELECT * FROM tbook;";
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            preparedStatement.setInt(1, id);
 
-            while (resultSet.next()) {
-                books.add(new Book(resultSet.getInt("id"),
-                        resultSet.getString("title"),
-                        resultSet.getString("author"),
-                        resultSet.getString("isbn"),
-                        resultSet.getDouble("price"),
-                        resultSet.getInt("pieces")));
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        return books;
-    }
-
-    @Override
-    public Book getBookByISBN(String isbn) {
-        try {
-            String sql = "SELECT * FROM tbook WHERE isbn = ?;";
-            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            preparedStatement.setString(1, isbn);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if(resultSet.next()) {
@@ -56,8 +34,6 @@ public class SQLBookRepositoryImpl implements IBooksRepository {
                         resultSet.getString("isbn"),
                         resultSet.getDouble("price"),
                         resultSet.getInt("pieces"));
-            } else {
-                return null;
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -85,26 +61,25 @@ public class SQLBookRepositoryImpl implements IBooksRepository {
     }
 
     @Override
-    public Book getBookById(int id) {
-        String sql = "SELECT * FROM tbook WHERE id = ?";
+    public List<Book> getAllBooks() {
+        List<Book> books = new ArrayList<>();
         try {
+            String sql = "SELECT * FROM tbook;";
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
-
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if(resultSet.next()) {
-                return new Book(resultSet.getInt("id"),
+            while (resultSet.next()) {
+                books.add(new Book(resultSet.getInt("id"),
                         resultSet.getString("title"),
                         resultSet.getString("author"),
                         resultSet.getString("isbn"),
                         resultSet.getDouble("price"),
-                        resultSet.getInt("pieces"));
+                        resultSet.getInt("pieces")));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
-        return null;
+        return books;
     }
 }

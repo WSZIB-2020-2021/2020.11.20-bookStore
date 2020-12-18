@@ -37,18 +37,6 @@ public class SessionObject {
         return temp;
     }
 
-    public void addToBasket(Book book) {
-        for(Book bookFromBasket : this.basket) {
-            if(bookFromBasket.getIsbn().equals(book.getIsbn())) {
-                bookFromBasket.setPieces(bookFromBasket.getPieces() + 1);
-                return;
-            }
-        }
-
-        book.setPieces(1);
-        this.basket.add(book);
-    }
-
     public List<Book> getBasket() {
         return basket;
     }
