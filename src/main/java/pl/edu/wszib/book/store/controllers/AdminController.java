@@ -9,9 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.edu.wszib.book.store.database.IBooksRepository;
 import pl.edu.wszib.book.store.model.Book;
+import pl.edu.wszib.book.store.model.Order;
+import pl.edu.wszib.book.store.model.OrderPosition;
 import pl.edu.wszib.book.store.model.User;
 import pl.edu.wszib.book.store.services.IBookService;
+import pl.edu.wszib.book.store.services.IOrderService;
 import pl.edu.wszib.book.store.session.SessionObject;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -20,6 +24,9 @@ public class AdminController {
 
     @Autowired
     IBookService bookService;
+
+    @Autowired
+    IOrderService orderService;
 
     @Resource
     SessionObject sessionObject;
@@ -43,6 +50,45 @@ public class AdminController {
         }
 
         this.bookService.updateBook(book);
+
+        return "redirect:/main";
+    }
+
+    @RequestMapping(value = "/cheaty-do-zapisy-ordera", method = RequestMethod.GET)
+    public String zapis() {
+
+        List<Book> books = this.bookService.getAllBooks();
+
+        Order order = new Order();
+        order.setStatus(Order.Status.ORDERED);
+        order.setUser(this.sessionObject.getLoggedUser());
+
+        OrderPosition orderPosition1 = new OrderPosition();
+        orderPosition1.setPieces(1);
+        orderPosition1.setBook(books.get(0));
+        orderPosition1.setOrder(order);
+
+        order.getPositions().add(orderPosition1);
+
+        OrderPosition orderPosition2 = new OrderPosition();
+        orderPosition2.setPieces(2);
+        orderPosition2.setBook(books.get(1));
+        orderPosition2.setOrder(order);
+
+        order.getPositions().add(orderPosition2);
+        order.setPrice(books.get(0).getPrice() + books.get(1).getPrice() * 2);
+
+        this.orderService.saveOrder(order);
+
+        return "redirect:/main";
+    }
+
+    @RequestMapping(value = "/cheaty-do-odczytania-ordera", method = RequestMethod.GET)
+    public String odczyt() {
+
+        Order order = this.orderService.getOrderById(1);
+
+        System.out.println(order);
 
         return "redirect:/main";
     }
